@@ -7,13 +7,13 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Home() {
   let categories = ["electronics", "jewelery", "men's clothing", "women's clothing"];
   return (
-    <div className='my-2'>
-      <div className='mx-5'>
+    <>
+      <div className='mx-5 md:mt-4'>
         <Header/>
       </div>
       <One />
       <Categories/>
-    </div>
+    </>
 
 
   )

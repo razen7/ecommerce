@@ -14,9 +14,8 @@ export default function Pcard2({ p }) {
                 </div>
                 <div className='mt-4'>
                     <button className='border-2 rounded-lg p-2 bg-slate-300 hover:bg-inherit transition-all duration-500'>
-                        <div className="font-bold text-zinc-600 flex gap-2 items-center" onClick={() => navigate('/' + p.id)}>
+                        <div className="font-bold text-zinc-600 flex gap-2 items-center w-full" onClick={() => navigate('/' + p.id)}>
                             View Details
-                            <span className='bg-red-400 rounded-full w-5 h-5 text-gray-100 flex justify-center items-center font-extrabold'> &lt;  </span>
                         </div>
 
                     </button>

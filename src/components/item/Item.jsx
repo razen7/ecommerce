@@ -2,18 +2,19 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Header from '../Header';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Item() {
     let { itemId } = useParams();
     const [item, setItem] = useState(null);
     const count = useRef(1);
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const addToCart = () => {
         let cart = localStorage.getItem('cart');
         let curItem = {
             id: item.id,
             title: item.title,
-            image:item.image,
+            image: item.image,
             price: item.price,
             quantity: Number(count.current.value)
         }
@@ -29,11 +30,12 @@ export default function Item() {
             }
         }
         localStorage.setItem('cart', JSON.stringify(cart));
-        alert('Product added successfully!')
+        toast('🦄 Product added successfully!!');
     }
-    const checkOut=()=>{
+
+    const goToCart = () => {
         let cart = localStorage.getItem('cart');
-        if(!cart){
+        if (!cart) {
             addToCart();
         }
         navigate('/cart');
@@ -46,7 +48,8 @@ export default function Item() {
 
     return (
         <div className='my-2'>
-            <div className='mx-5'>
+            <div className='mx-5 md:mt-4'>
+                <ToastContainer position='top-center' />
                 <Header />
                 {!item ? (<>loading...</>) : (<>
                     <div className='flex max-md:flex-col mt-5 border-b-2 p-9'>
@@ -82,12 +85,17 @@ export default function Item() {
                                 </div>
                             </div>
 
-                            <div className='w-full flex justify-center gap-8 mt-10 max-md:mt-6'>
+                            <div className='flex gap-8 mt-10 max-md:mt-6'>
                                 <button className='rounded-full bg-yellow-300 px-4 py-1 font-semibold shadow-sm hover:bg-gray-100 hover:text-yellow-600 transition-all duration-200 w-36' onClick={() => addToCart()}>
                                     Add to cart
                                 </button>
-                                <button className='rounded-full bg-yellow-300 px-4 py-1 font-semibold shadow-sm hover:bg-gray-100 hover:text-yellow-600 transition-all duration-200 w-36' onClick={()=>checkOut()}>Buy Now</button>
+
+                                <button className='rounded-full bg-yellow-300 px-4 py-1 font-semibold shadow-sm hover:bg-gray-100 hover:text-yellow-600 transition-all duration-200 w-36' onClick={() => goToCart()}>
+                                    Buy Now
+                                </button>
+
                             </div>
+
                         </div>
                     </div>
                 </>)}
